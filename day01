@@ -1,0 +1,272 @@
+=====================================================
+DAY 1 NOTES - SOFTWARE TESTING FUNDAMENTALS
+=====================================================
+Date: 25 October 2026
+Roadmap: 6-Month Automation QA + AI Roadmap
+Topics covered: Software Testing, QA vs QC vs Testing,
+Verification vs Validation, Manual Testing types,
+Functional Testing levels, Automation Testing types
+
+
+-----------------------------------------------------
+1. WHAT IS SOFTWARE TESTING?
+-----------------------------------------------------
+Checking whether software works the way it should, and
+finding problems before real users do.
+
+Example: On a login page, try the right password, a wrong
+password, an empty password, and see if each behaves correctly.
+
+Why we test:
+- Find bugs early (fixing later costs much more)
+- Make sure software meets what the customer asked for
+- Avoid crashes, data loss and security problems
+- Build trust in the product
+
+Key points:
+- Testing shows bugs are present. It can never prove there are zero bugs.
+- Testing everything is impossible, so we test the most important things first.
+
+
+-----------------------------------------------------
+2. QA vs QC vs TESTING
+-----------------------------------------------------
+QA (Quality Assurance)
+- About the PROCESS. Prevents defects.
+- Question: "Are we doing things the right way?"
+- Examples: standards, reviews, audits, training, test strategy
+
+QC (Quality Control)
+- About the PRODUCT. Detects defects.
+- Question: "Is what we built good?"
+- Examples: running test cases, finding and reporting bugs
+
+Testing
+- The hands-on activity of running the software to find bugs.
+- It is one part of QC.
+
+Relationship:  QA > QC > Testing  (Testing is inside QC, QC is inside QA)
+
+Cake example:
+- QA = following a good recipe, clean tools, trained baker
+- QC = checking the finished cake
+- Testing = tasting the cake
+
+Memory trick:
+- QA = Assurance = AVOID bugs
+- QC = Control = CATCH bugs
+
+Interview answer:
+"QA is a process-oriented, preventive activity that ensures the right
+processes are followed to avoid defects. QC is a product-oriented,
+detective activity that finds defects in the built product. Testing
+is a part of QC."
+
+
+-----------------------------------------------------
+3. VERIFICATION vs VALIDATION
+-----------------------------------------------------
+Verification
+- "Are we building the product RIGHT?"
+- Checks documents, design and code against requirements
+- Static: done WITHOUT running the software
+- Methods: reviews, walkthroughs, inspections
+- Done early, during development
+
+Validation
+- "Are we building the RIGHT product?"
+- Checks the working software against user needs
+- Dynamic: done BY running the software
+- Methods: functional testing, system testing, UAT
+- Done later, once something is built
+
+Example (login page):
+- Verification: review the design to check a password-reset link is included
+- Validation: open the built page, click "Forgot password", confirm the email arrives
+
+Example (client implementation):
+- Verification: review the configuration against the signed-off design document
+- Validation: client team tests the live system with real scenarios in UAT
+
+Why both are needed:
+A product can pass verification but fail validation if the requirement
+itself was wrong.
+
+Memory trick:
+- Verification = checking the PLAN
+- Validation = checking the REAL THING
+
+Interview answer:
+"Verification is a static process that checks whether we are building the
+product correctly according to requirements and design. Validation is a
+dynamic process that checks whether the final product meets the user's
+needs, by running the software."
+
+
+-----------------------------------------------------
+4. MANUAL TESTING - WHITE / BLACK / GREY BOX
+-----------------------------------------------------
+Manual testing = a person tests by hand, step by step, without automation tools.
+
+These describe how much you know about the inside of the software.
+
+White Box Testing
+- Tester knows the code and internal structure
+- Tests logic, paths, conditions, loops
+- Usually done by developers (e.g. unit testing)
+- Example: write tests so every if/else branch in a login function runs
+
+Black Box Testing
+- Tester does NOT know the code, only inputs and outputs
+- Tests behavior based on requirements
+- Usually done by QA testers
+- Example: enter valid credentials and check the home page opens
+
+Grey Box Testing
+- Tester has PARTIAL knowledge (e.g. database structure, API design)
+- Example: submit a form, then check the database to confirm the data was saved
+
+Comparison:
+                 White Box     Black Box      Grey Box
+Knows code?      Fully         No             Partly
+Focus            Internal      Behavior       Both
+Done by          Developers    Testers        Technical testers
+
+Note: These are testing APPROACHES. They apply to both manual and
+automation testing.
+
+
+-----------------------------------------------------
+5. FUNCTIONAL TESTING - TEST LEVELS
+-----------------------------------------------------
+Functional testing checks WHAT the software does (does each feature
+work as per requirements?).
+
+The four levels go from small to big:
+
+1) Unit Testing
+- Tests one small function or module alone
+- Done by developers, usually white box
+- Example: test only the function that checks password length >= 8
+- Analogy: checking one brick
+
+2) Integration Testing
+- Checks that modules work together and share data correctly
+- Example: after login, does the home page show the user's name?
+- Analogy: bricks and cement forming a wall
+
+3) System Testing
+- Tests the complete, fully built application end to end
+- Done by the QA team, black box
+- Example: register, login, search, add to cart, pay, get confirmation
+- Analogy: checking the whole house
+
+4) User Acceptance Testing (UAT)
+- Final test by the client or end users to confirm business needs are met
+- Done before going live. This is validation in action.
+- Example: client team tests with real scenarios and signs off
+- Analogy: the buyer walks through the house and accepts it
+
+Order: Unit > Integration > System > UAT
+       (Small > Together > Whole > Customer)
+
+Summary:
+Level        What is tested            Who tests            When
+Unit         One function/module       Developers           First
+Integration  Modules together          Developers/testers   After unit
+System       Whole application         QA team              After integration
+UAT          Business needs            Client/end users     Last
+
+Note: These are officially called TEST LEVELS (Day 2 topic). Functional
+testing can be done at each level.
+
+
+-----------------------------------------------------
+6. AUTOMATION TESTING
+-----------------------------------------------------
+Automation testing = using a tool or script (Playwright, Selenium, etc.)
+to run tests instead of a person clicking by hand.
+
+Why automate:
+- Faster than manual testing
+- Can run again and again, even overnight
+- Fewer human mistakes
+- Best for tests repeated often
+
+1) Regression Testing
+- Re-run old tests after a change or bug fix to make sure nothing that
+  used to work is now broken
+- Repeated every release, so a top candidate for automation
+- Example: checkout page changed, so re-run login, search and cart tests
+
+2) Smoke Testing
+- Quick, basic check of main features on a new build to decide if it is
+  stable enough for deeper testing
+- If smoke tests fail, the build goes back to developers
+- Example: does the app open, can you log in, does the home page load?
+
+3) API Testing
+- Tests the backend communication directly, without the UI
+- Send a request, check status code, data and speed
+- Faster and more stable than UI testing
+- Example: "get user" API returns status 200 and correct user details
+- (Covered in Weeks 9-10: Postman + Python Requests)
+
+4) Data-Driven Testing
+- ONE test script, MANY sets of data
+- Data is kept outside the script (Excel / CSV / JSON / database)
+- Example: one login test runs 50 times with 50 username/password combinations
+- (Covered in Week 7, Day 48)
+
+5) Keyword-Driven Testing
+- Tests are written using keywords for actions (OpenBrowser, Login,
+  ClickButton), usually in a table
+- Even non-programmers can build tests; keywords link to code behind the scenes
+- Less common today; data-driven is used more in pytest and Playwright
+
+Summary:
+Type            One-line meaning
+Regression      Re-check old features after changes
+Smoke           Quick "is the build basically working?" check
+API             Test the backend directly, no UI
+Data-Driven     Same test, many data sets
+Keyword-Driven  Tests built from action keywords
+
+Note: These are different kinds of things.
+- Regression and Smoke = WHAT you test (purpose)
+- API = WHERE you test (backend, not UI)
+- Data-driven and Keyword-driven = HOW you build the automation (framework approach)
+
+
+-----------------------------------------------------
+7. DAY 1 CHECKLIST (from roadmap)
+-----------------------------------------------------
+[ ] Understand what Software Testing is
+[ ] QA vs QC vs Testing
+[ ] Verification vs Validation
+[ ] Write notes
+[ ] Create GitHub account/repository
+
+
+-----------------------------------------------------
+8. SELF-CHECK QUESTIONS (answer without looking)
+-----------------------------------------------------
+1. What is software testing, and why do we do it?
+2. What is the difference between QA, QC and Testing?
+3. What is the difference between verification and validation?
+4. What are white, black and grey box testing?
+5. Name the 4 test levels in order.
+6. Why is regression testing a good candidate for automation?
+7. What is the difference between smoke and regression testing?
+
+
+-----------------------------------------------------
+9. DAILY LOG
+-----------------------------------------------------
+Hours studied:
+What I learned:
+What I practiced:
+What I struggled with:
+What I need to revise:
+GitHub commit:
+Confidence today: __/10
