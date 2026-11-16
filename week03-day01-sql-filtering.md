@@ -219,3 +219,17 @@ AND amount > 1000;
 ## Progress
 
 Day 1 filtering practice covered all five operators. The learner requested to move to the next day before attempting Question 8. Continue with Day 2 in the Week 3 plan.
+
+
+## Additional practice notes
+
+The learner also practiced the following patterns during the lesson:
+
+- Pending status with amount greater than 1,000: used `AND` correctly; initially used the wrong comparison operator (`<` instead of `>`), then corrected it.
+- Completed status OR amount greater than 4,000: selected `OR` correctly; corrected a typo in the column name from `amont` to `amount`.
+- Status in Failed or Pending: wrote the `IN` query correctly.
+- Amount between 1,200 and 3,000: wrote the `BETWEEN` query correctly.
+- Names containing the letter a: understood the `%a%` pattern; corrected by enclosing the pattern in quotes.
+- Explained correctly that `'A%'` matches names starting with A, while `'%A%'` matches names containing A anywhere.
+
+The learner chose to stop the assessment after Question 7 and proceed to Day 2 rather than complete all 10 questions.
